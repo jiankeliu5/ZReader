@@ -41,7 +41,7 @@ class ZReader(QMainWindow):
             
     def refreshListFailure(self):
         self.ui.progressBar.hide()
-        QMessageBox.information(self,u'failure',u'get the feed list failure',buttons=QMessagrBox.Ok)
+        QMessageBox.information(self,u'failure',u'get the feed list failure',buttons=QMessageBox.Ok)
         
     def refreshListSuccess(self):
         self.ui.feedList.clear()

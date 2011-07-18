@@ -31,7 +31,7 @@ class Login(QWidget):
         PublicFun.setCenter(self)
         
     def setValidator(self):
-        email_rx = QRegExp("\\w+@\\w+\.\\w")
+        email_rx = QRegExp("[\\w\.?]+@\\w+\.\\w+")
         email_valid = QRegExpValidator(email_rx,self)
         self.ui.emailLineEdit.setValidator(email_valid)
         passwd_rx = QRegExp("\\w{6,}")

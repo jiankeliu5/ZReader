@@ -5,6 +5,7 @@ Created on 2011-7-18
 @author: monsterxx03
 '''
 import PublicFun
+import GoogleApi
 from PyQt4.QtCore import *
 
 class LoginThread(QThread):
@@ -18,13 +19,17 @@ class LoginThread(QThread):
         
     def run(self):
         try:
-            PublicFun.Google_Api.get_auth_headers(self.email,self.passwd)
+            GoogleApi.Google_Api.get_auth_headers(self.email,self.passwd)
             PublicFun.Is_Login = True
             self.emit(SIGNAL('login_success'))
         except Exception,e:
+            print e
             self.emit(SIGNAL('login_failure'))
             
 class GetListThread(QThread):
+    """
+    获取feed列表的线程
+    """
     Feed_List = []
     
     def __init__(self):
@@ -32,8 +37,9 @@ class GetListThread(QThread):
 
     def run(self):
         try:
-            feed_addr_list,title_list,home_page_list = PublicFun.Google_Api.get_subscription_list()
+            feed_addr_list,title_list,home_page_list = GoogleApi.Google_Api.get_subscription_list()
             self.Feed_List = zip(feed_addr_list,title_list,home_page_list)
             self.emit(SIGNAL('get_list_success'))
-        except e:
+        except Exception,e:
+            print e
             self.emit(SIGNAL('get_list_failure'))
