@@ -8,6 +8,8 @@ import PublicFun
 import GoogleApi
 from PyQt4.QtCore import *
 
+google_api = GoogleApi.Google_Api()
+
 class LoginThread(QThread):
     """登入用线程"""
     def __init__(self,parent=None):
@@ -19,26 +21,35 @@ class LoginThread(QThread):
         
     def run(self):
         try:
-            GoogleApi.Google_Api.get_auth_headers(self.email,self.passwd)
+            google_api.get_auth_headers(self.email,self.passwd)
             PublicFun.Is_Login = True
             self.emit(SIGNAL('login_success'))
         except Exception,e:
             print e
             self.emit(SIGNAL('login_failure'))
             
-class GetListThread(QThread):
+class LoadingThread(QThread):
     """
-    获取feed列表的线程
+    登入成功后进行加载的线程
     """
-    Feed_List = []
+    subscription_list = []
+    unread_list = []
+    reading_list = []
+    read_list = []
+    starred_list = []
+    broadcast_list = []
     
     def __init__(self):
         QThread.__init__(self)
 
     def run(self):
         try:
-            feed_addr_list,title_list,home_page_list = GoogleApi.Google_Api.get_subscription_list()
-            self.Feed_List = zip(feed_addr_list,title_list,home_page_list)
+            self.subscription_list = google_api.get_subscription_list()
+            self.unread_list = google_api.get_unread_list()[0]
+            self.reading_list = google_api.get_reading_list()
+            self.read_list = google_api.get_read_list()
+            self.starred_list = google_api.get_starred_items()
+            self.broadcast_list = google_api.get_broadcast_items()
             self.emit(SIGNAL('get_list_success'))
         except Exception,e:
             print e

@@ -7,6 +7,7 @@ import feedparser
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
+Author_Headers = ''
 Is_Login = False
 Data_Base = 'ZReader_DataBase.db'
 Rss_Image='image'+os.sep+'rss.jpg'
@@ -47,6 +48,3 @@ def feedParser(xml):
         else:
             content_list.append('')
     return id_list,title_list,link_list,time_list,content_list
-
-
-    

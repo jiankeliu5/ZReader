@@ -166,6 +166,8 @@ class Google_Api(object):
         f = urllib2.urlopen(req)
         xml = f.read()
         f.close()
+        f = file('reading-list.xml','w')
+        print >> f, xml
         id_list,title_list,link_list,time_list,content_list = PublicFun.feedParser(xml)
         return zip(id_list,title_list,link_list,time_list,content_list)
         
