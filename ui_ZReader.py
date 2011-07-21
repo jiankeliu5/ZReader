@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ZReader.ui'
 #
-# Created: Tue Jul 19 23:26:45 2011
+# Created: Thu Jul 21 23:58:40 2011
 #      by: PyQt4 UI code generator 4.8.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -17,7 +17,7 @@ except AttributeError:
 class Ui_ZReader(object):
     def setupUi(self, ZReader):
         ZReader.setObjectName(_fromUtf8("ZReader"))
-        ZReader.resize(800, 600)
+        ZReader.resize(754, 565)
         self.centralwidget = QtGui.QWidget(ZReader)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
         self.verticalLayout_2 = QtGui.QVBoxLayout(self.centralwidget)
@@ -75,7 +75,7 @@ class Ui_ZReader(object):
         self.verticalLayout_2.addWidget(self.groupBox)
         ZReader.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(ZReader)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 25))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 754, 25))
         self.menubar.setObjectName(_fromUtf8("menubar"))
         self.menu = QtGui.QMenu(self.menubar)
         self.menu.setObjectName(_fromUtf8("menu"))
@@ -101,6 +101,7 @@ class Ui_ZReader(object):
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Base, brush)
         self.feedList.setPalette(palette)
+        self.feedList.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
         self.feedList.setObjectName(_fromUtf8("feedList"))
         self.verticalLayout.addWidget(self.feedList)
         self.progressBar = QtGui.QProgressBar(self.dockWidgetContents)

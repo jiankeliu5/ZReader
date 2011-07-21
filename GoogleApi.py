@@ -80,8 +80,8 @@ class Google_Api(object):
             req.set_proxy(self.host, self.type)
         f = urllib2.urlopen(req)
         xml = f.read()
-        id_list,title_list,link_list,time_list,content_list = PublicFun.feedParser(xml)
-        return zip(id_list,title_list,link_list,time_list,content_list)
+        items_list = PublicFun.feedParser(xml)
+        return items_list
     
     def get_unread_list(self):
         #获取所有未读计数列表
@@ -113,15 +113,15 @@ class Google_Api(object):
     
     def get_items(self,feed_url,n=20):
         #由指定的订阅地址，和返回条目数获取该站条目列表
-        req_url = "http://www.google.com/reader/atom/%s?n=%d"%(feed_url,n)
-        req = urllib2.Request(req_url)
+        req_url = "http://www.google.com/reader/atom/%s?n=%d"%(urllib.quote(feed_url),n)
+        req = urllib2.Request(req_url,headers=self.Author_Headers)
         if self.host:
             req.set_proxy(self.host, self.type)
         f = urllib2.urlopen(req)
         xml = f.read()
         f.close()
-        id_list,title_list,link_list,time_list,content_list = PublicFun.feedParser(xml)
-        return zip(id_list,title_list,link_list,time_list,content_list)
+        items_list = PublicFun.feedParser(xml)
+        return items_list
     
     def search_feed(self,item):
         #搜索供稿
@@ -142,8 +142,8 @@ class Google_Api(object):
         f = urllib2.urlopen(req)
         xml = f.read()
         f.close()
-        id_list,title_list,link_list,time_list,content_list = PublicFun.feedParser(xml)
-        return zip(id_list,title_list,link_list,time_list,content_list)
+        items_list = PublicFun.feedParser(xml)
+        return items_list
         
     def get_broadcast_items(self,n=9999):
         #获取共享的条目列表
@@ -154,10 +154,10 @@ class Google_Api(object):
         f = urllib2.urlopen(req)
         xml = f.read()
         f.close()
-        id_list,title_list,link_list,time_list,content_list = PublicFun.feedParser(xml)
-        return zip(id_list,title_list,link_list,time_list,content_list)
+        items_list = PublicFun.feedParser(xml)
+        return items_list
         
-    def get_reading_list(self,n=20):
+    def get_reading_list(self,n=100):
         #获取阅读列表
         req = urllib2.Request('http://www.google.com/reader/atom/user/-/state/com.google/reading-list?client=%s&n=%d'%(self.ClIENT,n),
                               headers=self.Author_Headers)
@@ -166,8 +166,8 @@ class Google_Api(object):
         f = urllib2.urlopen(req)
         xml = f.read()
         f.close()
-        id_list,title_list,link_list,time_list,content_list = PublicFun.feedParser(xml)
-        return zip(id_list,title_list,link_list,time_list,content_list)
+        items_list = PublicFun.feedParser(xml)
+        return items_list
         
     
     def add_a_feed(self,feed_url):
@@ -236,13 +236,12 @@ class Google_Api(object):
         self.type=type
         
 if __name__=='__main__':
+    url= 'feed/http://feed.google.org.cn'
     g = Google_Api()
     g.get_auth_headers('xyj.asmy@gmail.com','19900608abc')
     print 1
     #g.set_proxy(host='127.0.0.1:8000',type='http')
-    print g.host,g.type
-    f = file('broadcast.xml','w')
-    result = g.get_broadcast_items()
+    g.get_items('feed/http://feed.williamlong.info/')
             
         
     

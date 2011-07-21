@@ -12,17 +12,19 @@ from ui_Login import Ui_Login
 socket.setdefaulttimeout(10)
 
 class Login(QWidget):
-    def __init__(self,parent=None):
+    def __init__(self,google_api,parent=None):
         super(Login,self).__init__(parent)
 
         self.ui = Ui_Login()
         self.ui.setupUi(self)
         
+        self.google_api = google_api
+        
         self.updateUi()
         self.setValidator()
         
         #登入线程
-        self.loginThread = NetThread.LoginThread()
+        self.loginThread = NetThread.LoginThread(self.google_api)
         self.connect(self.loginThread,SIGNAL('login_failure'),self.login_failure)
         self.connect(self.loginThread, SIGNAL('login_success'),self.login_success)
         

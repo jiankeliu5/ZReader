@@ -1,5 +1,8 @@
-#Tue Jul 19 15:20:00 CST 2011
+#Fri Jul 22 00:08:36 CST 2011
 eclipse.preferences.version=1
+encoding//src/GoogleApi.py=utf-8
+encoding//src/Menu.py=utf-8
+encoding//src/PublicFun.py=utf-8
 encoding//src/testFeedParser.py=utf-8
 encoding/GoogleApi.py=utf-8
 encoding/Login.py=utf-8
