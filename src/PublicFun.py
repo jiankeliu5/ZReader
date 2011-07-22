@@ -50,10 +50,10 @@ def feedParser(xml):
             item.content = entry.content[0]['value']
         if hasattr(entry, 'category'):
             item.tags = [tag['label'] for tag in entry.tags if tag['label']]
+        if hasattr(entry, 'source'):
+            print entry.source.id[27:]
         items_list.append(item)
     return items_list
 
 if __name__=='__main__':
     items_list = feedParser('Gis.xml')
-    for item in items_list:
-        print item.tags

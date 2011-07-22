@@ -157,7 +157,7 @@ class Google_Api(object):
         items_list = PublicFun.feedParser(xml)
         return items_list
         
-    def get_reading_list(self,n=100):
+    def get_reading_list(self,n=20):
         #获取阅读列表
         req = urllib2.Request('http://www.google.com/reader/atom/user/-/state/com.google/reading-list?client=%s&n=%d'%(self.ClIENT,n),
                               headers=self.Author_Headers)
@@ -220,7 +220,7 @@ class Google_Api(object):
         #共享一个条目,a是共享，r是取消共享
         if not self.token:
             self.get_token()
-        postdata = urllib.urlencode({a_or_r:'user/-/state/com.google/starred','async':'true','s':feed_url,'i':id,'T':self.token})
+        postdata = urllib.urlencode({a_or_r:'user/-/state/com.google/broadcast','async':'true','s':feed_url,'i':id,'T':self.token})
         req = urllib2.Request('http://www.google.com/reader/api/0/edit-tag?client=%s'%self.ClIENT,data=postdata,
                               headers=self.Author_Headers)
         if self.host:
@@ -236,12 +236,13 @@ class Google_Api(object):
         self.type=type
         
 if __name__=='__main__':
-    url= 'feed/http://feed.google.org.cn'
     g = Google_Api()
-    g.get_auth_headers('xyj.asmy@gmail.com','19900608abc')
+    g.get_auth_headers('','')
     print 1
     #g.set_proxy(host='127.0.0.1:8000',type='http')
-    g.get_items('feed/http://feed.williamlong.info/')
+    feed_url = 'feed/http://feeds.boston.com/boston/bigpicture/index'
+    id = 'tag:google.com,2005:reader/item/c7ea967fb41d966a'
+    g.broadcast_a_item(feed_url, id, a_or_r)
             
         
     

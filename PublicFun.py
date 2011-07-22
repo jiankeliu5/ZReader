@@ -24,6 +24,7 @@ class Item(object):
         self.update_time = ''
         self.content = ''
         self.tags = []
+        self.source_feed = ''
         
 def setCenter(window):
     #将窗体置于屏幕中间
@@ -51,5 +52,8 @@ def feedParser(xml):
             item.content = entry.content[0]['value']
         if hasattr(entry, 'category'):
             item.tags = [tag['label'] for tag in entry.tags if tag['label']]
+        if hasattr(entry, 'source'):
+            item.source_feed = entry.source.id[27:]
         items_list.append(item)
     return items_list    
+
