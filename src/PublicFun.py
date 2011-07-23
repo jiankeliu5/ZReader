@@ -38,6 +38,7 @@ def feedParser(xml):
         item =  Item()
         if hasattr(entry, 'id'):
             item.id = entry.id
+            print entry.id
         if hasattr(entry, 'updated'):
             item.update_time = entry.updated
         if hasattr(entry, 'link'):

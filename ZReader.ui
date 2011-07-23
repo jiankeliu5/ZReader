@@ -20,7 +20,7 @@
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
       </property>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
          <widget class="QListWidget" name="feedList">
@@ -97,14 +97,14 @@
        <property name="orientation">
         <enum>Qt::Vertical</enum>
        </property>
-       <widget class="QWidget" name="">
+       <widget class="QWidget" name="layoutWidget">
         <layout class="QVBoxLayout" name="verticalLayout_2">
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout">
            <item>
             <widget class="QLabel" name="label">
              <property name="text">
-              <string>view style:</string>
+              <string>查看</string>
              </property>
             </widget>
            </item>
@@ -112,22 +112,22 @@
             <widget class="QComboBox" name="comboBox">
              <item>
               <property name="text">
-               <string>all</string>
+               <string>所有</string>
               </property>
              </item>
              <item>
               <property name="text">
-               <string>read</string>
+               <string>已读</string>
               </property>
              </item>
              <item>
               <property name="text">
-               <string>starred-items</string>
+               <string>加星的条目</string>
               </property>
              </item>
              <item>
               <property name="text">
-               <string>broadcast-items</string>
+               <string>分享的条目</string>
               </property>
              </item>
             </widget>
@@ -202,11 +202,9 @@
          </item>
         </layout>
        </widget>
-       <widget class="QWebView" name="webView">
-        <property name="url">
-         <url>
-          <string>about:blank</string>
-         </url>
+       <widget class="QTextEdit" name="textEdit">
+        <property name="readOnly">
+         <bool>true</bool>
         </property>
        </widget>
       </widget>
@@ -225,7 +223,7 @@
    </property>
    <widget class="QMenu" name="menu">
     <property name="title">
-     <string>Account</string>
+     <string>账户</string>
     </property>
     <addaction name="actionLogin_Google_Account"/>
     <addaction name="actionLogout_Google_Account"/>
@@ -250,13 +248,6 @@
    </property>
   </action>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>QWebView</class>
-   <extends>QWidget</extends>
-   <header>QtWebKit/QWebView</header>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections/>
 </ui>

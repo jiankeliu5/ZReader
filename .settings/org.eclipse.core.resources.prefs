@@ -1,4 +1,4 @@
-#Fri Jul 22 16:32:57 CST 2011
+#Sat Jul 23 19:53:28 CST 2011
 eclipse.preferences.version=1
 encoding//src/GoogleApi.py=utf-8
 encoding//src/PublicFun.py=utf-8
@@ -8,6 +8,6 @@ encoding/Login.py=utf-8
 encoding/Menu.py=utf-8
 encoding/NetThread.py=utf-8
 encoding/PublicFun.py=utf-8
-encoding/ZReader.py=utf-8
+encoding/ZReader.pyw=utf-8
 encoding/ui_Login.py=utf-8
 encoding/ui_ZReader.py=utf-8

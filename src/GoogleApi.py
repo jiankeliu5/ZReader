@@ -239,7 +239,7 @@ class Google_Api(object):
         
 if __name__=='__main__':
     g = Google_Api()
-    g.get_auth_headers('xyj.asmy@gmail.com','19900608abc')
+    g.get_auth_headers('','')
     print 1
     #g.set_proxy(host='127.0.0.1:8000',type='http')
     print g.host,g.type

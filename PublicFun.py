@@ -14,8 +14,12 @@ Unstarred_Image = 'image'+os.sep+'unstarred.png'
 Unbroadcast_Image = 'image'+os.sep+'unbroadcast.png'
 Starred_Image = 'image'+os.sep+'starred.png'
 Broadcast_Image = 'image'+os.sep+'broadcast.png'
+Cache_Dir = 'cache'
 
 class Item(object):
+    """从一个订阅feed地址获取的条目类，
+    有id号，标题，原文链接，更新时间，内容，
+    打上的标签，原feed地址"""
     
     def __init__(self):
         self.id = ''
@@ -57,3 +61,5 @@ def feedParser(xml):
         items_list.append(item)
     return items_list    
 
+if __name__=='__main__':
+    feedParser('src/moon.xml')

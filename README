@@ -1,0 +1,18 @@
+桌面版的google reader,ZReader.pyw启动 ,src文件夹内为测试用文件及代码，无视。
+cache为读过条目中图片的缓存，可删除
+登录时选择保存用户名密码的话，会被存进ZReader_DataBase.db中（sqlite数据库）,计划最后可能的话加入离线阅读时用来存内容用
+
+GoogleApi.py 封装的一部分GoogleReader的api (基本完成)
+Login.py 登入账户用 （已完成)
+Menu.py 计划一些右键菜单的代码写里面 (基本没动）
+NetThread.py  网络线程的代码
+PublicFun.py 一些共公用的方法和类（窗口至中间，过滤xml，条目类）
+ui开头的是pyuic生成的 界面代码
+
+已完成：
+查看，加星，共享条目
+
+待完成：
+添加，删除订阅（api部分已完成，未整合进界面）
+搜索feed，邮件发送条目内容，设置代理
+条目列表中滚动到底端时自动加载下面条目（？？？？悲催，还不知道怎么实现）

@@ -201,6 +201,21 @@ class Google_Api(object):
         if result=='OK':
             return True
         
+    def set_read(self,feed_url,id,a_or_r='a'):
+        #将一个条目设为已读
+        if not self.token:
+            self.get_token()
+        postdata = urllib.urlencode({a_or_r:'user/-/state/com.google/read','async':'true','s':feed_url,'i':id,'T':self.token})
+        req = urllib2.Request('http://www.google.com/reader/api/0/edit-tag?client=%s'%self.ClIENT,data=postdata,
+                              headers=self.Author_Headers)
+        if self.host:
+            req.set_proxy(self.host, self.type)
+        f = urllib2.urlopen(req)
+        result = f.read()
+        f.close()
+        if result=='OK':
+            return True
+        
     def starred_a_item(self,feed_url,id,a_or_r='a'):
         #给一个条目加注星标,a是添加星标，r是移除星标
         if not self.token:
@@ -235,14 +250,9 @@ class Google_Api(object):
         self.host=host
         self.type=type
         
-if __name__=='__main__':
-    g = Google_Api()
-    g.get_auth_headers('','')
-    print 1
-    #g.set_proxy(host='127.0.0.1:8000',type='http')
-    feed_url = 'feed/http://feeds.boston.com/boston/bigpicture/index'
-    id = 'tag:google.com,2005:reader/item/c7ea967fb41d966a'
-    g.broadcast_a_item(feed_url, id, a_or_r)
-            
         
-    
+if __name__=='__main__':
+    google = Google_Api()
+    google.get_auth_headers('', '')
+    print 1
+    google.set_read('feed/http://feed.google.org.cn/', 'tag:google.com,2005:reader/item/15c6cc6c730ac01a', 'a')

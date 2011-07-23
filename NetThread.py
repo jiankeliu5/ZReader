@@ -4,6 +4,8 @@ Created on 2011-7-18
 
 @author: monsterxx03
 '''
+import os
+import urllib
 import PublicFun
 import GoogleApi
 from PyQt4.QtCore import *
@@ -65,3 +67,29 @@ class LoadingThread(QThread):
         except Exception,e:
            print e
            self.emit(SIGNAL('get_list_failure'))
+           
+class ImageThread(QThread):
+    """下载一个条目中图片的线程"""
+    def __init__(self,google_api):
+        QThread.__init__(self)
+        self.link_list = []
+        self.img_list = []
+        self.item= None
+        self.google_api = google_api
+        
+    def run(self):
+        self.img_list = []
+        self.google_api.set_read(self.item.source_feed,self.item.id,'a')
+        for link in self.link_list:
+            filename = link[link.rfind('/')+1:]
+            filename = os.path.join(os.getcwd(),PublicFun.Cache_Dir,filename)
+            if os.path.exists(filename):
+                self.img_list.append(filename)
+                continue
+            try:
+                urllib.urlretrieve(link, filename)
+                self.img_list.append(filename)
+            except Exception,e:
+                print e
+                self.img_list.append("")
+                continue
